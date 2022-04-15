@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="./style.css">
-    <script src="./script.js"></script>
+    <script src="./script.js" defer></script>
     <title>Goik's-Library</title>
 </head>
 
@@ -14,29 +14,54 @@
             <h1>Goik's Library</h1>
         </header>
         <div class="book_ToAdd">
-            <button>New book</button>
-            <form action="" method="post">
+            <button id="newBook_Show">New book</button>
+            <form>
                 <div class="form_Item">
                     <label for="book_Title">Title</label>
-                    <input id="book_Title" type="text">
+                    <input id="book_Title" name="title" type="text">
                 </div>
                 <div class="form_Item">
                     <label for="book_Author">Author</label>
-                    <input id="book_Author" type="text">
+                    <input id="book_Author" name="author" type="text">
                 </div>
                 <div class="form_Item">
                     <label for="book_Pages">Total Pages</label>
-                    <input id="book_Pages" type="number">
+                    <input id="book_Pages" name="total_Pages" type="number">
                 </div>
                 <div class="form_Item">
                     <label for="book_Read">Read?</label>
-                    <input id="book_Read" type="checkbox">
+                    <input id="book_Read" name="read" type="checkbox">
                 </div>
-                <button type="submit">Add</button>
+                <button id="newBook_Add" type="button">Add</button>
             </form>
         </div>
-        <div class="book_Container">a
+        <div class="book_Container">
+            <div class="book_Card">
+                <div class="card_Content">
+                    <h3>Index:</h3>
+                    <p>0</p>
+                </div>
+                <div class="card_Content">
+                    <h3>Title:</h3>
+                    <p>Title</p>
+                </div>
+                <div class="card_Content">
+                    <h3>Author:</h3>
+                    <p>Author</p>
+                </div>
+                <div class="card_Content">
+                    <h3>Total Pages:</h3>
+                    <p>000</p>
+                </div>
+                <div class="card_Content">
+                    <h3>Read?</h3> <br> <span><input type="checkbox" name="read" id=""></span>
+                </div>
+                <button id="book_Remove">Remove</button>
+            </div>
         </div>
+        <footer>
+            <h4>Total books in library:</h4><span class="total_Books"></span>
+        </footer>
     </main>
 </body>
 

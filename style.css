@@ -1,3 +1,7 @@
+*{
+    padding: 0;
+    margin: 0;
+}
 
 body{
     background-color: saddlebrown;
@@ -12,7 +16,7 @@ main{
 }
 
 header{
-    padding: 0 25px;
+    padding: 25px;
     border-radius: 25px 25px 0 0;
     border-width: 5px;
     border-style: solid;
@@ -28,7 +32,7 @@ header{
 }
 
 form{
-    display: flex;
+    display: none;
     justify-content: space-between;
 }
 
@@ -38,8 +42,33 @@ form{
 }
 
 .book_Container{
-    padding: 0 25px;
+    padding: 25px;
     border-width: 5px;
     border-style: solid;
     border-color: antiquewhite;
+}
+
+.book_Container:nth-child(even){
+    border-width: 5px 0;
+    border-style: solid;
+    border-color: antiquewhite;
+}
+
+.book_Card{
+    display: flex;
+    justify-content: space-between;
+}
+
+.card_Content{
+    display: flex;
+    flex-direction: column;
+}
+
+footer{
+    padding: 25px;
+    border-radius: 0 0 25px 25px;
+    border-width: 0 5px 5px;
+    border-style: solid;
+    border-color: antiquewhite;
+    text-align: center;
 }
