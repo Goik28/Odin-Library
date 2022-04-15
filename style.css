@@ -1,0 +1,45 @@
+
+body{
+    background-color: saddlebrown;
+    display: flex;
+    justify-content: center;    
+}
+
+main{    
+    width: 950px;
+    display: flex;
+    flex-direction: column;
+}
+
+header{
+    padding: 0 25px;
+    border-radius: 25px 25px 0 0;
+    border-width: 5px;
+    border-style: solid;
+    border-color: antiquewhite;
+    text-align: center;
+}
+
+.book_ToAdd{
+    padding: 25px;
+    border-width: 0 5px;
+    border-style: solid;
+    border-color: antiquewhite;
+}
+
+form{
+    display: flex;
+    justify-content: space-between;
+}
+
+.form_Item{
+    display: flex;
+    flex-direction: column;
+}
+
+.book_Container{
+    padding: 0 25px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: antiquewhite;
+}
