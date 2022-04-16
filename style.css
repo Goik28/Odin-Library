@@ -41,7 +41,7 @@ form{
     flex-direction: column;
 }
 
-.card_Model{
+#card_Model{
     display: none;
 }
 
@@ -67,8 +67,6 @@ form{
     display: flex;
     flex-direction: column;
 }
-
-
 
 footer{
     padding: 25px;
