@@ -41,6 +41,10 @@ form{
     flex-direction: column;
 }
 
+.card_Model{
+    display: none;
+}
+
 .book_Container{
     padding: 25px;
     border-width: 5px;
@@ -63,6 +67,8 @@ form{
     display: flex;
     flex-direction: column;
 }
+
+
 
 footer{
     padding: 25px;
