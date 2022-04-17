@@ -1,6 +1,7 @@
 const newBook_Show = document.getElementById("newBook_Show");
 let newBook_Toggle = false;
 
+const card_model = document.getElementById("card_Model").cloneNode(true);
 const newBook_Add = document.getElementById("newBook_Add");
 
 const totalBooks = document.getElementsByClassName("total_Books")[0];
@@ -37,9 +38,8 @@ function createBook() {
 
 function cleanBookContainer() {
     let container = document.getElementsByClassName("book_Container")[0];
-    const model = document.getElementById("card_Model").cloneNode(true);
     container.innerHTML = "";
-    container.appendChild(model);
+    container.appendChild(card_model);
 }
 
 function createBookCards() {
@@ -50,14 +50,14 @@ function createBookCards() {
         document.getElementById("total_Pages_Card").textContent = element.book_Pages;
         document.getElementById("read_Card").checked = element.read;
         let the_Book = document.getElementsByClassName("book_Card")[0].cloneNode(true);
-        the_Book.id = "card_"+index;
-        the_Book.lastChild.addEventListener("click", findBookToBeRemoved);
+        the_Book.id = "card_" + index;
+        the_Book.getElementsByTagName("button")[0].addEventListener("click", findBookToBeRemoved);
         document.getElementsByClassName("book_Container")[0].appendChild(the_Book);
     });
 }
 
 function updateTotalBooks() {
-    totalBooks.textContent = " " + library.length;
+    totalBooks.textContent = "" + library.length;
 }
 
 function addBookToLibrary() {
@@ -70,15 +70,13 @@ function addBookToLibrary() {
 
 newBook_Add.addEventListener("click", addBookToLibrary);
 
-const removeButton = document.getElementById("book_Remove");
-
-function findBookToBeRemoved (event){
+function findBookToBeRemoved(event) {
     const bookToBeRemoved = event.target.parentNode.id;
     removeBookFromLibrary(bookToBeRemoved.substr(5));
 }
 
-function removeBookFromLibrary (index){
-    library.splice(index,1);
+function removeBookFromLibrary(index) {
+    library.splice(index, 1);
     cleanBookContainer();
     createBookCards();
     updateTotalBooks();

@@ -16,20 +16,20 @@
         <div class="book_ToAdd">
             <button id="newBook_Show">New book</button>
             <form>
-                <div class="form_Item">
+                <div class="form_Item book_Title">
                     <label for="book_Title">Title</label>
-                    <input id="book_Title" name="title" type="text">
+                    <input id="book_Title" name="title" type="text" placeholder="Ex: Harry Potter">
                 </div>
-                <div class="form_Item">
+                <div class="form_Item book_Author">
                     <label for="book_Author">Author</label>
-                    <input id="book_Author" name="author" type="text">
+                    <input id="book_Author" name="author" type="text" placeholder="Ex: J. K. Rowling">
                 </div>
-                <div class="form_Item">
+                <div class="form_Item book_TotalPages">
                     <label for="book_Pages">Total Pages</label>
-                    <input id="book_Pages" name="total_Pages" type="number">
+                    <input id="book_Pages" name="total_Pages" type="number" placeholder="Ex: 350">
                 </div>
-                <div class="form_Item">
-                    <label for="book_Read">Read?</label>
+                <div class="form_Item book_Read">
+                    <label for="book_Read">Read</label>
                     <input id="book_Read" name="read" type="checkbox">
                 </div>
                 <button id="newBook_Add" type="button">Add</button>
@@ -38,30 +38,30 @@
         <div class="book_Container">
             <div class="book_Card" id="card_Model">
                 <div class="card_Content">
-                    <p>Index:</p>
+                    <p>Id:</p>
                     <p id="index_Card">0</p>
                 </div>
-                <div class="card_Content">
+                <div class="card_Content book_Title">
                     <p>Title:</p>
                     <p id="title_Card">Title</p>
                 </div>
-                <div class="card_Content">
+                <div class="card_Content book_Author">
                     <p>Author:</p>
                     <p id="author_Card">Author</p>
                 </div>
-                <div class="card_Content">
+                <div class="card_Content book_TotalPages">
                     <p>Total Pages:</p>
                     <p id="total_Pages_Card">000</p>
                 </div>
-                <div class="card_Content">
-                    <p>Read?</p>
+                <div class="card_Content book_Read">
+                    <p>Read</p>
                     <input id="read_Card" type="checkbox" name="read" id="">
                 </div>
-                <button id="book_Remove">Remove</button>
+                <button class="book_Remove">Remove</button>
             </div>
         </div>
         <footer>
-            <h4>Total books in library:</h4><span class="total_Books"></span>
+            <h4>Total books in library:&nbsp;</h4><span class="total_Books">0</span>
         </footer>
     </main>
 </body>
