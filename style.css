@@ -118,6 +118,10 @@ form{
     column-gap: 25px;
 }
 
+.addedBook_info{
+    font-weight: 700;
+}
+
 footer{
     padding: 25px;
     border-radius: 0 0 25px 25px;
