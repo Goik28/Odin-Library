@@ -6,11 +6,13 @@ const newBook_Add = document.getElementById("newBook_Add");
 
 const totalBooks = document.getElementsByClassName("total_Books")[0];
 
-function book(title, author, book_Pages, read) {
-    this.title = title;
-    this.author = author;
-    this.book_Pages = book_Pages;
-    this.read = read;
+class Book {
+    constructor(title, author, book_Pages, read) {
+        this.title = title;
+        this.author = author;
+        this.book_Pages = book_Pages;
+        this.read = read;
+    }
 }
 
 let library = [];
@@ -28,7 +30,7 @@ newBook_Show.addEventListener("click", () => {
 });
 
 function createBook() {
-    let aBook = new book(document.getElementById("book_Title").value,
+    let aBook = new Book(document.getElementById("book_Title").value,
         document.getElementById("book_Author").value,
         document.getElementById("book_Pages").value,
         document.getElementById("book_Read").checked
