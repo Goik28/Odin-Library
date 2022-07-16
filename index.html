@@ -18,21 +18,21 @@
             <form>
                 <div class="form_Item book_Title">
                     <label for="book_Title">Title</label>
-                    <input id="book_Title" name="title" type="text" placeholder="Ex: Harry Potter">
+                    <input id="book_Title" name="title" type="text" placeholder="Ex: Harry Potter" required>
                 </div>
                 <div class="form_Item book_Author">
                     <label for="book_Author">Author</label>
-                    <input id="book_Author" name="author" type="text" placeholder="Ex: J. K. Rowling">
+                    <input id="book_Author" name="author" type="text" placeholder="Ex: J. K. Rowling" required>
                 </div>
                 <div class="form_Item book_TotalPages">
                     <label for="book_Pages">Total Pages</label>
-                    <input id="book_Pages" name="total_Pages" type="number" placeholder="Ex: 350">
+                    <input id="book_Pages" name="total_Pages" type="number" placeholder="Ex: 350" min="1" required>
                 </div>
                 <div class="form_Item book_Read">
                     <label for="book_Read">Read</label>
                     <input id="book_Read" name="read" type="checkbox">
                 </div>
-                <button id="newBook_Add" type="button">Add</button>
+                <button id="newBook_Add" type="submit">Add</button>
             </form>
         </div>
         <div class="book_Container">
