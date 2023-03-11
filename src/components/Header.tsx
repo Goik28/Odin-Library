@@ -17,7 +17,7 @@ export function Header({
   setSignedUser: React.Dispatch<React.SetStateAction<UserCredential | null>>;
 }) {
   const [userName, setUserName] = useState("");
-  const [hidden, setHidden] = useState(true);
+  const [logged, setLogged] = useState(false);
 
   async function signIn() {
     // Sign in Firebase using popup auth and Google as the identity provider.
@@ -46,29 +46,38 @@ export function Header({
       setUserName(user.displayName as string);
       // Show user's profile and sign-out button.
       // Hide sign-in button.
-      setHidden(false);
+      setLogged(true);
     } else {
       // User is signed out!
       // Hide user's profile and sign-out button.
       // Show sign-in button.
       setUserName("");
-      setHidden(true);
+      setLogged(false);
     }
   }
 
-  return (
-    <header>
-      <div id="user-container">
-        <div hidden={hidden} id="user-name">
-          Welcome {userName.split(" ")[0]} to your library:
+  function showPanel() {
+    if (logged) {
+      return (
+        <div id="user-container">
+          <div id="user-name">
+            Welcome {userName.split(" ")[0]} to your library:
+          </div>
+          <button id="sign-out" onClick={signOutUser}>
+            Sign-out
+          </button>
         </div>
-        <button hidden={hidden} id="sign-out" onClick={signOutUser}>
-          Sign-out
-        </button>
-        <button hidden={!hidden} id="sign-in" onClick={signIn}>
-          Sign-in to your library with Google
-        </button>
-      </div>
-    </header>
-  );
+      );
+    } else {
+      return (
+        <div id="user-container">
+          <button id="sign-in" onClick={signIn}>
+            Sign-in to your library with Google
+          </button>
+        </div>
+      );
+    }
+  }
+
+  return <header>{showPanel()}</header>;
 }
