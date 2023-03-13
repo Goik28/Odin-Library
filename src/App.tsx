@@ -1,4 +1,4 @@
-import { UserCredential } from "@firebase/auth";
+import { User } from "@firebase/auth";
 import { useEffect, useState } from "react";
 import "./App.css";
 import { retrieveLibrary, saveLibrary } from "./components/actions";
@@ -9,15 +9,15 @@ import { Book, Library } from "./components/interfaces";
 import { TopContent } from "./components/TopContent";
 
 function App() {
-  const [signedUser, setSignedUser] = useState<UserCredential | null>(null);
+  const [signedUser, setSignedUser] = useState<User | null>(null);
   const [library, setLibrary] = useState<Library | null>(null);
 
   function addBook(book: Book) {
     if (library) {
-      const newLibrary = library.concat(book);
+      const newLibrary: Library = { books: library.books.concat(book) };
       setLibrary(newLibrary);
     } else {
-      const newLibrary: Library = [book];
+      const newLibrary: Library = { books: [book] };
       setLibrary(newLibrary);
     }
   }
@@ -25,7 +25,7 @@ function App() {
   function updateBookRead(index: number) {
     if (library) {
       const newLibrary = structuredClone(library);
-      newLibrary[index].read = !newLibrary[index].read;
+      newLibrary.books[index].read = !newLibrary.books[index].read;
       setLibrary(newLibrary);
     }
   }
@@ -33,36 +33,42 @@ function App() {
   function removeBook(index: number) {
     if (library) {
       const newLibrary = structuredClone(library);
-      newLibrary.splice(index, 1);
+      newLibrary.books.splice(index, 1);
       setLibrary(newLibrary);
     }
   }
 
-  useEffect(() => {
-    async () => {
-      if (signedUser) {
-        const retrievedLibrary = await retrieveLibrary(signedUser);
-        if (retrievedLibrary) {
-          setLibrary(retrievedLibrary);
+  async function loadLibrary() {
+    if (signedUser) {
+      const retrievedLibrary = await retrieveLibrary(signedUser);
+      if (retrievedLibrary) {
+        setLibrary(retrievedLibrary);
+      }
+    }
+    if (!signedUser && library) {
+      setLibrary(null);
+    }
+  }
+
+  async function writeLibrary() {
+    if (signedUser && library) {
+      const retrievedLibrary = await retrieveLibrary(signedUser);
+      if (retrievedLibrary) {
+        if (retrievedLibrary != library) {
+          saveLibrary(signedUser, library);
         }
+      } else {
+        saveLibrary(signedUser, library);
       }
-      if (!signedUser && library) {
-        setLibrary(null);
-      }
-    };
+    }
+  }
+
+  useEffect(() => {
+    loadLibrary();
   }, [signedUser]);
 
   useEffect(() => {
-    async () => {
-      if (signedUser && library) {
-        const retrievedLibrary = await retrieveLibrary(signedUser);
-        if (retrievedLibrary) {
-          if (retrievedLibrary != library) {
-            saveLibrary(signedUser, library);
-          }
-        }
-      }
-    };
+    writeLibrary();
   }, [library]);
 
   return (

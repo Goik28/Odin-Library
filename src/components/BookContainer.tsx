@@ -12,7 +12,7 @@ export function BookContainer({
 }) {
   function populateLibrary() {
     if (library) {
-      return library.map((book, index) => {
+      return library.books.map((book, index) => {
         function remove() {
           removeBook(index);
         }

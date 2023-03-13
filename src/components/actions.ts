@@ -1,5 +1,12 @@
 import { initializeApp } from "@firebase/app";
-import { UserCredential } from "@firebase/auth";
+import {
+  browserSessionPersistence,
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
+  User,
+} from "@firebase/auth";
 import {
   collection,
   doc,
@@ -13,34 +20,48 @@ import { Library } from "./interfaces";
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+export async function signingIn() {
+  const provider = new GoogleAuthProvider();
+  getAuth().setPersistence(browserSessionPersistence);
+  try {
+    await signInWithPopup(getAuth(), provider);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export function signingOut() {
+  signOut(getAuth());
+}
+
 export async function retrieveLibrary(
-  signedUser: UserCredential
+  signedUser: User
 ): Promise<Library | null> {
   try {
-    const libraryRef = doc(collection(db, "libraries"), signedUser.user.uid);
+    const libraryRef = doc(collection(db, "libraries"), signedUser.uid);
     const result = await getDoc(libraryRef);
     if (result.exists()) {
       return result.data() as Library;
     } else {
-      // doc.data() will be undefined in this case
-      console.log("No such document!");
       return null;
     }
   } catch (error) {
     console.log(error);
-    return null
+    return null;
   }
 }
 
 export async function saveLibrary(
-  signedUser: UserCredential,
+  signedUser: User,
   library: Library
-) {
-  const libraryRef = doc(collection(db, "libraries"), signedUser?.user.uid);
+): Promise<boolean> {
+  const libraryRef = doc(collection(db, "libraries"), signedUser.uid);
   // Saves library to Cloud Firestore.
   try {
     await setDoc(libraryRef, library);
+    return true;
   } catch (error) {
     console.error("Error writing library to Firebase Database", error);
+    return false;
   }
 }

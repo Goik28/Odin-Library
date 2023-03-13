@@ -1,4 +1,4 @@
-export type Library= Array<Book>;
+export type Library = { books: Book[] };
 
 export interface Book {
   title: string;
