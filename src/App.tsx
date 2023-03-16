@@ -1,6 +1,5 @@
 import { User } from "@firebase/auth";
 import { useEffect, useState } from "react";
-import "./App.css";
 import { retrieveLibrary, saveLibrary } from "./components/actions";
 import { BookContainer } from "./components/BookContainer";
 import { Footer } from "./components/Footer";
@@ -72,7 +71,7 @@ function App() {
   }, [library]);
 
   return (
-    <main>
+    <main className="flex flex-col w-screen h-screen bg-neutral-800 text-neutral-200">
       <Header setSignedUser={setSignedUser} />
       <TopContent signedUser={signedUser} library={library} addBook={addBook} />
       <BookContainer

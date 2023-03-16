@@ -25,19 +25,20 @@ export function TopContent({
 
   if (signedUser) {
     return (
-      <div>
-        <div>
-          <p>
-            Total books in your library:&nbsp;
-            <span className="total_Books">
-              {library ? library.books.length : "0"}
-            </span>
-          </p>
-        </div>
-        <form method="post" onSubmit={newBookHandler}>
-          <div className="form_Item book_Title">
-            <label htmlFor="book_Title">Title</label>
+      <div className="m-1 flex flex-col items-center">
+        <p className="text-lg">
+          Total books in your library:&nbsp;
+          {library ? library.books.length : "0"}
+        </p>
+        <form
+          className="mt-1 p-2 flex flex-col border-2 border-neutral-100"
+          method="post"
+          onSubmit={newBookHandler}
+        >
+          <div className="flex">
+            <label htmlFor="book_Title">Title:</label>
             <input
+              className="ml-2 pl-1 flex-1 bg-neutral-700"
               id="book_Title"
               name="title"
               type="text"
@@ -45,9 +46,10 @@ export function TopContent({
               required
             ></input>
           </div>
-          <div className="form_Item book_Author">
-            <label htmlFor="book_Author">Author</label>
+          <div className="flex mt-2">
+            <label htmlFor="book_Author">Author:</label>
             <input
+              className="ml-2 pl-1 flex-1 bg-neutral-700"
               id="book_Author"
               name="author"
               type="text"
@@ -55,9 +57,10 @@ export function TopContent({
               required
             ></input>
           </div>
-          <div className="form_Item book_TotalPages">
-            <label htmlFor="book_Pages">Total Pages</label>
+          <div className="flex mt-2">
+            <label htmlFor="book_Pages">Total Pages:</label>
             <input
+              className="ml-2 pl-1 flex-1 bg-neutral-700"
               id="book_Pages"
               name="pages"
               type="number"
@@ -66,17 +69,29 @@ export function TopContent({
               required
             ></input>
           </div>
-          <div className="form_Item book_Read">
-            <label htmlFor="book_Read">Read</label>
-            <input id="book_Read" name="read" type="checkbox"></input>
+          <div className="flex mt-2">
+            <label htmlFor="book_Read">Read:</label>
+            <input
+              className="ml-2 pl-1 flex-1 bg-neutral-700"
+              id="book_Read"
+              name="read"
+              type="checkbox"
+            ></input>
           </div>
-          <button id="newBook_Add" type="submit">
-            Add
+          <button
+            className="mt-2 pl-6 pr-6 w-fit self-center border-neutral-100 border-2 p-1 rounded-full hover:bg-neutral-100 hover:text-neutral-900"
+            type="submit"
+          >
+            Add new book
           </button>
         </form>
       </div>
     );
   } else {
-    return <div>Please, log in to have access to your library.</div>;
+    return (
+      <div className="text-3xl text-center m-auto">
+        Please, log in to have access to your library.
+      </div>
+    );
   }
 }

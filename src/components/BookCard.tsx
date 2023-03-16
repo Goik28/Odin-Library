@@ -18,14 +18,14 @@ export function BookCard({
   }
 
   return (
-    <div className="book_Card" id="card_Model">
-      <div className="card_Content">
+    <div className="flex-1 border-r-2 border-neutral-700">
+      <div >
         <p>Title: {book.title}</p>
         <p>Author: {book.author}</p>
         <p>Total Pages: {book.pages}</p>
       </div>
-      <div className="book_Read">
-        <label htmlFor="book_Read">Read</label>
+      <div>
+        <label htmlFor="book_Read">Read: </label>
         <input
           id="read_Card"
           type="checkbox"
@@ -33,7 +33,7 @@ export function BookCard({
           checked={read}
           onChange={updateRead}
         ></input>
-      </div>      
+      </div>
     </div>
   );
 }
